@@ -1,24 +1,28 @@
-def personal_sum(numbers):
-    result = 0
-    incorrect_data = 0
-    for number in numbers:
+class Numb:
+    def personal_sum(self, numbers):
+        result = 0
+        incorrect_data = 0
+        for i in numbers:
+            try:
+             result += i
+            except TypeError:
+                incorrect_data += 1
+                print(f"В данных имееться вот эта ошибка: {i}")
+        return result, incorrect_data
+    def calculate_average(self, numbers):
         try:
-            result += number
+            result, incorrect_data = self.personal_sum(numbers)
+            minus = len(numbers) - incorrect_data
+            Result = result/minus
+            return Result
+
+
+        except (ZeroDivisionError, UnboundLocalError ) as axc :
+            print(f"В Вашем коде появился 0 и вывел вот эту ошибку {axc}")
+            return 0
         except TypeError:
-            incorrect_data += 1
-            print(f"Количество не коректных повторений: {incorrect_data}")
-    return result, incorrect_data
-
-def calculate_average(*numbers):
-    try:
-       result = sum(personal_sum(numbers)) / len(numbers)
-    except ZeroDivisionError:
-        return 0
-    except TypeError:
-        return(f"В numbers записан некорректный тип данных")
-    return result
-
-
+            print(f"В numbers записан некорректный тип данных ")
+            return
 
 
 
